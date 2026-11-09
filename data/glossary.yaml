@@ -1,0 +1,411 @@
+# 용어 사전
+# term: 화면에 쓰는 이름(다른 파일에서 이 이름으로 찾아요)
+# short: 한 줄 뜻 / detail: 조금 더 / formula: 계산식(LaTeX) / example: 숫자 예시
+# caution: 오해하기 쉬운 점 / related: 같이 보면 좋은 용어
+
+- term: 주식
+  en: Stock
+  category: 기본
+  short: 회사의 주인 자격을 잘게 나눈 증서예요.
+  detail: 주식을 가지면 그만큼 회사의 주인(주주)이 돼요. 회사가 돈을 잘 벌면 주가가 오르거나 배당을 받을 수 있고, 반대면 손실이 날 수 있어요.
+  related: [주주, 시가총액, 배당]
+
+- term: 주주
+  en: Shareholder
+  category: 기본
+  short: 회사 주식을 가진 사람이에요.
+  detail: 주주총회에서 의결권을 행사하고, 배당을 받을 권리가 있어요. 가진 주식 수만큼 권리가 커져요.
+  related: [주식, 배당]
+
+- term: 시가총액
+  en: Market Cap
+  category: 기본
+  short: 회사 전체를 지금 주가로 샀을 때의 값이에요.
+  formula: \text{시가총액} = \text{주가} \times \text{발행주식수}
+  example: 주가 5만 원 × 발행주식수 1억 주 = 시가총액 5조 원
+  caution: 주가가 높다고 큰 회사가 아니에요. 회사 크기는 시가총액으로 비교해요.
+  related: [주식, 코스피]
+
+- term: 상장
+  en: Listing
+  category: 기본
+  short: 회사 주식을 거래소에서 누구나 사고팔 수 있게 등록하는 일이에요.
+  related: [IPO, 코스피, 코스닥]
+
+- term: IPO
+  en: Initial Public Offering
+  category: 채권·자본시장
+  short: 회사가 처음으로 주식을 일반 투자자에게 팔고 상장하는 과정이에요.
+  detail: 회사는 IPO로 큰돈을 조달하고, 기존 주주는 주식을 팔 길이 생겨요. 공모가가 정해지고 청약을 거쳐 상장일에 거래가 시작돼요.
+  caution: 상장 첫날 급등했다가 이후 공모가 아래로 떨어지는 경우도 많아요.
+  related: [상장, 유상증자]
+
+- term: 배당
+  en: Dividend
+  category: 기본
+  short: 회사가 번 돈의 일부를 주주에게 나눠주는 거예요.
+  detail: 보통 1년에 한 번이나 분기마다 줘요. 배당을 받으려면 배당기준일에 주식을 갖고 있어야 해요.
+  related: [배당수익률, 당기순이익]
+
+- term: 배당수익률
+  en: Dividend Yield
+  category: 기업 분석
+  short: 지금 주가로 샀을 때 1년에 배당으로 받는 비율이에요.
+  formula: \text{배당수익률} = \frac{\text{주당배당금}}{\text{주가}} \times 100
+  example: 주가 5만 원, 1년 배당 2,000원 → 배당수익률 4%
+  caution: 주가가 크게 떨어지면 배당수익률이 높아 보여요. 배당을 계속 줄 수 있는 회사인지도 같이 봐야 해요.
+  related: [배당, 국채금리]
+
+- term: 유상증자
+  en: Paid-in Capital Increase
+  category: 채권·자본시장
+  short: 회사가 새 주식을 팔아서 돈을 마련하는 거예요.
+  detail: 주식 수가 늘어나서 기존 주주의 몫이 줄어들 수 있어요(지분 희석). 돈을 어디에 쓰는지에 따라 시장 반응이 달라져요.
+  caution: 빚을 갚으려는 증자는 보통 악재, 성장 투자용 증자는 상대적으로 덜 나쁘게 받아들여져요.
+  related: [무상증자, IPO, 회사채]
+
+- term: 무상증자
+  en: Bonus Issue
+  category: 기본
+  short: 회사가 기존 주주에게 돈을 받지 않고 새 주식을 나눠주는 거예요.
+  detail: 회사 안의 잉여금을 자본금으로 옮기는 것이라 회사 가치는 그대로예요. 주식 수가 늘어난 만큼 주가는 조정돼요.
+  related: [유상증자, 액면분할]
+
+- term: 액면분할
+  en: Stock Split
+  category: 기본
+  short: 주식 1주를 여러 주로 쪼개는 거예요.
+  example: 1주 100만 원을 10주로 쪼개면 1주 10만 원짜리 10주가 돼요. 내 주식의 총 가치는 그대로예요.
+  related: [무상증자, 시가총액]
+
+- term: 공매도
+  en: Short Selling
+  category: 투자·수급
+  short: 주식을 빌려서 먼저 팔고, 나중에 싸게 사서 갚는 거래예요.
+  detail: 주가가 떨어질 거라고 볼 때 써요. 떨어지면 이익, 오르면 손실이고 손실에 이론상 끝이 없어요.
+  related: [매수·매도, 변동성]
+
+- term: PER
+  en: Price Earnings Ratio
+  category: 기업 분석
+  short: 주가가 1주당 순이익의 몇 배인지예요.
+  detail: '"이 회사 이익의 몇 년치를 주고 사는가"로 생각하면 쉬워요. 같은 업종끼리 비교해야 의미가 있어요.'
+  formula: \text{PER} = \frac{\text{주가}}{\text{EPS}}
+  example: 주가 10만 원, EPS 1만 원 → PER 10배
+  caution: PER이 낮다고 무조건 싼 건 아니에요. 이익이 줄어들 회사라서 낮을 수도 있어요.
+  related: [EPS, PBR, 당기순이익]
+
+- term: PBR
+  en: Price Book-value Ratio
+  category: 기업 분석
+  short: 주가가 1주당 순자산의 몇 배인지예요.
+  detail: 1배보다 낮으면 회사를 지금 정리해서 나눠 가질 돈보다 주가가 싸다는 뜻이에요.
+  formula: \text{PBR} = \frac{\text{주가}}{\text{BPS}}
+  example: 주가 5만 원, BPS 10만 원 → PBR 0.5배
+  caution: 돈을 잘 못 버는 회사(ROE가 낮은 회사)는 PBR이 계속 낮게 머물기도 해요.
+  related: [BPS, ROE, PER]
+
+- term: EPS
+  en: Earnings Per Share
+  category: 기업 분석
+  short: 주식 1주가 1년에 벌어들인 순이익이에요.
+  formula: \text{EPS} = \frac{\text{당기순이익}}{\text{발행주식수}}
+  example: 순이익 1,000억 원 ÷ 1,000만 주 = EPS 1만 원
+  related: [PER, 당기순이익]
+
+- term: BPS
+  en: Book-value Per Share
+  category: 기업 분석
+  short: 주식 1주에 해당하는 순자산(자산 − 부채)이에요.
+  formula: \text{BPS} = \frac{\text{순자산}}{\text{발행주식수}}
+  related: [PBR, 부채비율]
+
+- term: ROE
+  en: Return On Equity
+  category: 기업 분석
+  short: 주주가 넣은 돈(자기자본)으로 1년에 얼마를 벌었는지예요.
+  formula: \text{ROE} = \frac{\text{당기순이익}}{\text{자기자본}} \times 100
+  example: 자기자본 1조 원으로 순이익 1,500억 원 → ROE 15%
+  caution: 빚을 많이 쓰면 ROE가 높아 보일 수 있어요. 부채비율과 같이 봐요.
+  related: [ROA, PBR, 부채비율]
+
+- term: ROA
+  en: Return On Assets
+  category: 기업 분석
+  short: 회사가 가진 전체 자산으로 1년에 얼마를 벌었는지예요.
+  formula: \text{ROA} = \frac{\text{당기순이익}}{\text{총자산}} \times 100
+  related: [ROE, ROIC]
+
+- term: ROIC
+  en: Return On Invested Capital
+  category: 기업 분석
+  short: 본업에 실제로 투자한 돈으로 얼마를 벌었는지예요.
+  detail: 세금을 뺀 영업이익을 본업에 들어간 자본으로 나눠요. 회사가 본업에서 돈을 잘 굴리는지 볼 때 써요.
+  related: [ROE, 영업이익]
+
+- term: 영업이익
+  en: Operating Profit
+  category: 기업 분석
+  short: 본업으로 번 이익이에요.
+  formula: \text{영업이익} = \text{매출} - \text{매출원가} - \text{판매관리비}
+  detail: 이자, 투자 손익, 일회성 이익은 빠져서 회사 본업의 실력을 보기 좋아요.
+  related: [당기순이익, EBITDA]
+
+- term: 당기순이익
+  en: Net Income
+  category: 기업 분석
+  short: 모든 비용과 세금을 빼고 최종으로 남은 이익이에요.
+  caution: 땅이나 자회사를 팔아서 생긴 일회성 이익이 섞일 수 있어요. 영업이익과 같이 봐요.
+  related: [영업이익, EPS]
+
+- term: EBITDA
+  en: Earnings Before Interest, Taxes, Depreciation and Amortization
+  category: 기업 분석
+  short: 이자·세금·감가상각비를 빼기 전 이익이에요. 회사가 본업으로 버는 현금에 가까워요.
+  formula: \text{EBITDA} \approx \text{영업이익} + \text{감가상각비} + \text{무형자산상각비}
+  related: [영업이익]
+
+- term: 부채비율
+  en: Debt Ratio
+  category: 기업 분석
+  short: 회사가 주주 돈 대비 빚을 얼마나 썼는지예요.
+  formula: \text{부채비율} = \frac{\text{부채}}{\text{자기자본}} \times 100
+  caution: 은행·보험은 원래 부채비율이 높아요. 업종마다 기준이 달라요.
+  related: [ROE, 신용등급]
+
+- term: 코스피
+  en: KOSPI
+  category: 시장
+  short: 한국 유가증권시장 전체 주가를 하나로 나타낸 지수예요.
+  detail: 1980년 1월 4일 시가총액을 100으로 잡고 지금 얼마인지 보여줘요. 삼성전자, SK하이닉스 같은 대형주 비중이 커요.
+  related: [코스닥, 시가총액]
+
+- term: 코스닥
+  en: KOSDAQ
+  category: 시장
+  short: 중소·벤처·기술 기업 중심의 한국 주식시장(과 그 지수)이에요.
+  detail: 바이오, 2차전지 소재, IT 기업이 많아 코스피보다 변동성이 커요.
+  related: [코스피, 변동성]
+
+- term: 나스닥
+  en: NASDAQ
+  category: 시장
+  short: 기술 기업이 많은 미국 주식시장(과 그 지수)이에요.
+  related: [S&P 500]
+
+- term: S&P 500
+  en: Standard & Poor's 500
+  category: 시장
+  short: 미국 대형주 500개로 만든 대표 지수예요.
+  detail: 미국 주식시장 전체 흐름을 볼 때 가장 많이 써요. 투자 성과를 비교하는 기준으로도 쓰여요.
+  related: [나스닥, 코스피]
+
+- term: 기준금리
+  en: Policy Rate
+  category: 경제 지표
+  short: 중앙은행이 정하는 금리로, 모든 금리의 출발점이에요.
+  detail: 한국은행 금통위와 미국 연준 FOMC가 정해요. 올리면 돈 빌리기가 비싸져 소비·투자가 줄고 물가가 잡혀요. 내리면 반대예요.
+  caution: 금리를 내린다고 주가가 늘 오르진 않아요. 경기가 나빠서 내리는 경우엔 주가가 같이 떨어지기도 해요.
+  related: [FOMC, 금통위, 국채금리, 한미 금리차]
+
+- term: FOMC
+  en: Federal Open Market Committee
+  category: 경제 지표
+  short: 미국 기준금리를 정하는 연방공개시장위원회예요.
+  detail: 1년에 8번 열려요. 3·6·9·12월 회의에는 위원들의 경제전망과 금리 예상(점도표)도 나와요.
+  related: [기준금리, 금통위]
+
+- term: 금통위
+  en: Monetary Policy Board
+  category: 경제 지표
+  short: 한국 기준금리를 정하는 한국은행 금융통화위원회예요.
+  detail: 1년에 8번 통화정책방향 결정회의를 열어요. 총재 기자간담회 발언으로 다음 결정을 짐작해요.
+  related: [기준금리, FOMC]
+
+- term: CPI
+  en: Consumer Price Index
+  category: 경제 지표
+  short: 소비자가 사는 물건·서비스 가격의 평균, 즉 물가예요. 보통 1년 전보다 몇 % 올랐는지로 봐요.
+  detail: 중앙은행은 보통 물가 상승률 2%를 목표로 해요. 이보다 높으면 금리를 올리고, 낮으면 내릴 여지가 생겨요.
+  related: [근원물가, 기준금리]
+
+- term: 근원물가
+  en: Core Inflation
+  category: 경제 지표
+  short: 값이 크게 출렁이는 식료품·에너지를 뺀 물가예요.
+  detail: 일시적인 유가·날씨 영향을 빼고 물가의 흐름을 보려고 써요. 중앙은행이 특히 중요하게 봐요.
+  related: [CPI]
+
+- term: GDP
+  en: Gross Domestic Product
+  category: 경제 지표
+  short: 한 나라 안에서 일정 기간 만들어낸 모든 것의 가치, 즉 경제 규모예요.
+  detail: 보통 성장률로 봐요. 한국은 전 분기 대비, 미국은 전 분기 대비를 1년 속도로 환산한(연율) 값을 많이 발표해요.
+  caution: 한국과 미국의 GDP 성장률은 계산 방식이 달라서 숫자를 바로 비교하면 안 돼요.
+  related: [경기침체, PMI]
+
+- term: PMI
+  en: Purchasing Managers' Index
+  category: 경제 지표
+  short: 기업 구매 담당자들에게 경기를 물어본 지수예요. 50보다 높으면 확장, 낮으면 위축이에요.
+  detail: GDP보다 빨리 나와서 경기 방향을 미리 보는 데 써요.
+  related: [GDP, 경기침체]
+
+- term: 실업률
+  en: Unemployment Rate
+  category: 경제 지표
+  short: 일할 의사가 있는 사람 중 일자리가 없는 사람의 비율이에요.
+  detail: 미국은 매달 첫 금요일쯤 고용보고서로 발표해요. 실업률이 오르면 경기 둔화 신호, 금리 인하 기대가 커져요.
+  related: [경기침체, 기준금리]
+
+- term: 환율
+  en: Exchange Rate
+  category: 경제 지표
+  short: 두 나라 돈을 바꾸는 비율이에요. 원/달러 1,400원은 1달러를 사는 데 1,400원이 든다는 뜻이에요.
+  detail: 원/달러 환율이 오르면(원화 약세) 수출 기업은 같은 달러를 벌어도 원화로 더 많이 받아요. 대신 수입 물가는 올라요.
+  caution: 환율 숫자가 오르는 게 원화 가치가 떨어지는 거예요. 처음엔 반대로 헷갈리기 쉬워요.
+  related: [달러지수, 한미 금리차]
+
+- term: 달러지수
+  en: Dollar Index
+  category: 경제 지표
+  short: 여러 나라 돈과 비교한 미국 달러의 평균 가치예요.
+  detail: 달러지수가 오르면 달러가 강해진 거예요. 보통 원화를 포함한 신흥국 통화가 약해지고, 외국인 돈이 한국 증시에서 빠지기 쉬워요.
+  related: [환율]
+
+- term: 한미 금리차
+  en: Korea-US Rate Gap
+  category: 경제 지표
+  short: 한국 기준금리에서 미국 기준금리를 뺀 값이에요.
+  detail: 미국 금리가 더 높으면(마이너스) 달러로 돈을 굴리는 게 유리해져 원화 약세 압력이 생길 수 있어요.
+  caution: 금리차만으로 환율이 정해지진 않아요. 무역수지, 경기, 위험 회피 심리도 함께 작용해요.
+  related: [기준금리, 환율]
+
+- term: 국채금리
+  en: Government Bond Yield
+  category: 채권·자본시장
+  short: 나라가 돈을 빌릴 때 내는 이자율이에요. 시장에서 매일 바뀌어요.
+  detail: 떼일 걱정이 거의 없어 "위험 없이 받는 이자"의 기준이 돼요. 국채금리가 오르면 주식의 매력이 상대적으로 떨어져요. 특히 미래 이익을 보고 사는 성장주가 민감해요.
+  related: [채권, 장단기 금리차, 신용스프레드]
+
+- term: 장단기 금리차
+  en: Yield Curve Spread
+  category: 채권·자본시장
+  short: 장기 국채금리에서 단기 국채금리를 뺀 값이에요. 미국은 보통 10년 − 2년으로 봐요.
+  detail: 평소엔 오래 빌려줄수록 이자가 높아 플러스예요. 마이너스(역전)가 되면 시장이 앞으로 금리 인하, 즉 경기 둔화를 예상한다는 뜻으로 읽어요.
+  formula: \text{장단기 금리차} = \text{10년 금리} - \text{2년 금리}
+  caution: 역전 뒤 경기침체가 온 적이 많지만, 시기는 몇 달에서 2년 이상까지 들쭉날쭉했어요.
+  related: [국채금리, 경기침체]
+
+- term: 유동성
+  en: Liquidity
+  category: 경제 지표
+  short: 시장에 도는 돈의 양, 또는 자산을 얼마나 쉽게 현금으로 바꿀 수 있는지예요.
+  detail: 금리가 낮고 돈이 많이 풀리면 유동성이 풍부하다고 해요. 이럴 때 주식·부동산 같은 자산 가격이 오르기 쉬워요.
+  related: [기준금리]
+
+- term: 경기침체
+  en: Recession
+  category: 경제 지표
+  short: 경제 활동이 넓게, 꽤 오래 줄어드는 상황이에요.
+  detail: 흔히 GDP가 두 분기 연속 줄면 침체라고 말하지만, 미국은 전미경제연구소(NBER)가 고용·소득 등을 종합해 판단해요.
+  related: [GDP, 실업률, 장단기 금리차]
+
+- term: 채권
+  en: Bond
+  category: 채권·자본시장
+  short: 돈을 빌려주고 받는 차용증이에요. 나라가 발행하면 국채, 회사가 발행하면 회사채예요.
+  detail: 정해진 날까지 이자를 받고 만기에 원금을 돌려받아요. 중간에 시장에서 사고팔 수 있어서 가격이 매일 바뀌어요.
+  caution: 금리가 오르면 이미 가진 채권의 가격은 떨어져요.
+  related: [국채금리, 회사채, 듀레이션]
+
+- term: 듀레이션
+  en: Duration
+  category: 채권·자본시장
+  short: 금리가 1%p 바뀔 때 채권 가격이 대략 몇 % 바뀌는지예요.
+  example: 듀레이션 7년인 채권은 금리가 1%p 오르면 가격이 약 7% 떨어져요.
+  related: [채권, 국채금리]
+
+- term: 신용등급
+  en: Credit Rating
+  category: 채권·자본시장
+  short: 회사나 나라가 빌린 돈을 제때 갚을 능력을 등급으로 매긴 거예요.
+  detail: AAA가 가장 높고, BBB−까지를 투자등급, 그 아래를 투기등급이라고 해요. 등급이 낮을수록 더 높은 이자를 줘야 돈을 빌릴 수 있어요.
+  related: [회사채, 신용스프레드]
+
+- term: 회사채
+  en: Corporate Bond
+  category: 채권·자본시장
+  short: 회사가 돈을 빌리려고 발행하는 채권이에요.
+  detail: 은행 대출 대신 투자자에게 직접 돈을 빌리는 방법이에요. 신용등급에 따라 금리가 정해져요.
+  related: [채권, 신용등급, 신용스프레드, 유상증자]
+
+- term: 신용스프레드
+  en: Credit Spread
+  category: 채권·자본시장
+  short: 회사채 금리에서 같은 만기 국채금리를 뺀 값이에요. 회사가 떼일 위험에 대한 추가 이자예요.
+  formula: \text{신용스프레드} = \text{회사채 금리} - \text{국채금리}
+  detail: 스프레드가 벌어지면 시장이 기업 부도 위험을 크게 본다는 뜻이에요. 경기 불안의 신호로 많이 봐요.
+  related: [회사채, 신용등급, 국채금리]
+
+- term: 매수·매도
+  en: Buy / Sell
+  category: 투자·수급
+  short: 매수는 주식을 사는 것, 매도는 파는 것이에요.
+  related: [거래량, 외국인 순매수]
+
+- term: 거래량
+  en: Volume
+  category: 투자·수급
+  short: 일정 기간 동안 사고팔린 주식 수예요.
+  detail: 가격이 오를 때 거래량도 늘면 힘이 실린 상승으로 봐요. 거래량 없이 오르면 쉽게 꺾일 수 있다고 봐요.
+  related: [거래대금]
+
+- term: 거래대금
+  en: Trading Value
+  category: 투자·수급
+  short: 일정 기간 동안 거래된 금액이에요(거래량 × 가격).
+  related: [거래량]
+
+- term: 외국인 순매수
+  en: Foreign Net Buying
+  category: 투자·수급
+  short: 외국인이 산 금액이 판 금액보다 많은 상태예요.
+  detail: 외국인은 한국 증시 대형주 주가에 큰 영향을 줘요. 달러가 약하고 원화가 강해질 때 순매수가 늘기 쉬워요.
+  related: [기관 순매수, 환율, 달러지수]
+
+- term: 기관 순매수
+  en: Institutional Net Buying
+  category: 투자·수급
+  short: 연기금·보험·자산운용사 같은 기관이 산 금액이 판 금액보다 많은 상태예요.
+  related: [외국인 순매수]
+
+- term: 변동성
+  en: Volatility
+  category: 투자·수급
+  short: 가격이 얼마나 크게 오르내리는지예요.
+  detail: 보통 수익률의 표준편차로 계산해요. 변동성이 크면 크게 벌 수도, 크게 잃을 수도 있어요.
+  related: [베타, MDD]
+
+- term: 베타
+  en: Beta
+  category: 투자·수급
+  short: 시장 전체가 1% 움직일 때 이 종목이 평균 몇 % 움직였는지예요.
+  example: 베타 1.5면 코스피가 10% 오를 때 평균 15% 올랐고, 10% 떨어질 때 15% 떨어졌다는 뜻이에요.
+  related: [변동성]
+
+- term: MDD
+  en: Maximum Drawdown
+  category: 투자·수급
+  short: 고점에서 저점까지 가장 크게 떨어진 비율이에요. "최악의 경우 얼마나 잃어봤나"예요.
+  formula: \text{MDD} = \frac{\text{저점} - \text{직전 고점}}{\text{직전 고점}} \times 100
+  example: 100만 원이 60만 원까지 떨어졌다가 회복했다면 MDD는 −40%
+  related: [변동성, CAGR]
+
+- term: CAGR
+  en: Compound Annual Growth Rate
+  category: 투자·수급
+  short: 여러 해 동안의 수익을 "매년 평균 몇 %씩 복리로 불어났나"로 바꾼 값이에요.
+  formula: \text{CAGR} = \left(\frac{\text{최종 금액}}{\text{처음 금액}}\right)^{1/\text{년수}} - 1
+  example: 1,000만 원이 3년 뒤 1,331만 원 → CAGR 10%
+  related: [MDD]

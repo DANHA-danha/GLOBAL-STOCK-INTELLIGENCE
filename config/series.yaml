@@ -1,0 +1,191 @@
+# 경제 상황판에 보여줄 지표 목록
+# - source: ecos(한국은행) 또는 fred(미국 세인트루이스 연준)
+# - transform: yoy 이면 지수를 "전년 같은 달 대비 상승률(%)"로 바꿔서 저장해요
+# - term: 용어 튜터(data/glossary.yaml)의 용어 이름. 화면에서 누르면 뜻이 나와요
+# - up_is_bad: 사는 사람(투자자) 입장에서 오르면 부담인 지표면 true. 색깔에만 쓰여요
+# 코드가 틀리면 collect.py 실행 결과의 "실패" 목록에 나와요. 그때 이 파일만 고치면 돼요.
+
+countries:
+  - code: KR
+    name: 한국
+    note: 수출 의존도가 높아 환율과 미국 금리에 크게 흔들려요.
+    series:
+      - key: kr_base_rate
+        label: 기준금리
+        source: ecos
+        stat: 722Y001
+        item: "0101000"
+        cycle: M
+        unit: "%"
+        term: 기준금리
+        up_is_bad: true
+      - key: kr_cpi_yoy
+        label: 소비자물가 상승률
+        source: ecos
+        stat: 901Y009
+        item: "0"
+        cycle: M
+        transform: yoy
+        unit: "%"
+        term: CPI
+        up_is_bad: true
+      - key: kr_usdkrw
+        label: 원/달러 환율
+        source: ecos
+        stat: 731Y001
+        item: "0000001"
+        cycle: D
+        unit: 원
+        term: 환율
+        up_is_bad: true
+      - key: kr_bond3y
+        label: 국고채 3년 금리
+        source: ecos
+        stat: 817Y002
+        item: "010200000"
+        cycle: D
+        unit: "%"
+        term: 국채금리
+        up_is_bad: true
+
+  - code: US
+    name: 미국
+    note: 미국 금리와 달러가 전 세계 돈의 흐름을 정해요.
+    series:
+      - key: us_fed_upper
+        label: 기준금리(상단)
+        source: fred
+        id: DFEDTARU
+        unit: "%"
+        term: 기준금리
+        up_is_bad: true
+      - key: us_cpi_yoy
+        label: 소비자물가 상승률
+        source: fred
+        id: CPIAUCSL
+        transform: yoy
+        unit: "%"
+        term: CPI
+        up_is_bad: true
+      - key: us_unrate
+        label: 실업률
+        source: fred
+        id: UNRATE
+        unit: "%"
+        term: 실업률
+        up_is_bad: true
+      - key: us_gdp
+        label: 실질 GDP 성장률(연율)
+        source: fred
+        id: A191RL1Q225SBEA
+        unit: "%"
+        term: GDP
+        up_is_bad: false
+      - key: us_10y
+        label: 국채 10년 금리
+        source: fred
+        id: DGS10
+        unit: "%"
+        term: 국채금리
+        up_is_bad: true
+      - key: us_2y
+        label: 국채 2년 금리
+        source: fred
+        id: DGS2
+        unit: "%"
+        term: 장단기 금리차
+        up_is_bad: true
+      - key: us_dollar
+        label: 달러지수(광의)
+        source: fred
+        id: DTWEXBGS
+        unit: ""
+        term: 달러지수
+        up_is_bad: true
+
+  - code: EU
+    name: 유로존
+    note: 유럽 경기가 약하면 독일·유럽으로 가는 한국 수출이 줄어요.
+    series:
+      - key: eu_ecb_rate
+        label: ECB 예금금리
+        source: fred
+        id: ECBDFR
+        unit: "%"
+        term: 기준금리
+        up_is_bad: true
+      - key: eu_hicp_yoy
+        label: 소비자물가 상승률
+        source: fred
+        id: CP0000EZ19M086NEST
+        transform: yoy
+        unit: "%"
+        term: CPI
+        up_is_bad: true
+      - key: eu_usd
+        label: 달러/유로 환율
+        source: fred
+        id: DEXUSEU
+        unit: 달러
+        term: 환율
+        up_is_bad: false
+
+  - code: JP
+    name: 일본
+    note: 엔화가 약하면 일본 기업과 경쟁하는 한국 수출 기업이 불리해질 수 있어요.
+    series:
+      - key: jp_usdjpy
+        label: 엔/달러 환율
+        source: fred
+        id: DEXJPUS
+        unit: 엔
+        term: 환율
+        up_is_bad: false
+      - key: jp_10y
+        label: 국채 10년 금리
+        source: fred
+        id: IRLTLT01JPM156N
+        unit: "%"
+        term: 국채금리
+        up_is_bad: true
+
+  - code: CN
+    name: 중국
+    note: 한국 수출의 약 5분의 1이 중국으로 가요. 중국 경기는 화학·철강·화장품에 바로 영향을 줘요.
+    series:
+      - key: cn_usdcny
+        label: 위안/달러 환율
+        source: fred
+        id: DEXCHUS
+        unit: 위안
+        term: 환율
+        up_is_bad: false
+      - key: cn_cpi_yoy
+        label: 소비자물가 상승률
+        source: fred
+        id: CHNCPIALLMINMEI
+        transform: yoy
+        unit: "%"
+        term: CPI
+        up_is_bad: false
+
+# 한국은행 "100대 통계지표"에서 최신값만 가져와 표로 보여줘요(코드 없이 이름으로 찾아요)
+ecos_key_stats:
+  - 경제성장률
+  - 수출
+  - 수입
+  - 경상수지
+  - 실업률
+  - 코스피
+
+# 미국 주요 지표 발표일 (FRED 발표 일정 API)
+fred_releases:
+  - id: 10
+    name: 미국 소비자물가(CPI) 발표
+    term: CPI
+  - id: 50
+    name: 미국 고용보고서 발표
+    term: 실업률
+  - id: 53
+    name: 미국 GDP 발표
+    term: GDP

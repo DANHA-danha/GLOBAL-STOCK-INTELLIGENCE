@@ -1,0 +1,37 @@
+# 직접 관리하는 일정. 미국 CPI·고용·GDP 발표일은 collect.py가 FRED에서 자동으로 받아요(data/events_auto.csv).
+# 날짜는 발표(결정)일 기준이에요. FOMC는 이틀 회의의 둘째 날(미국 동부 오후 2시 발표 = 한국 시간 다음 날 새벽 3~4시).
+# 출처를 확인한 날: 2026-11-09
+
+types:
+  미국 금리 결정:
+    term: FOMC
+    why: 미국 기준금리가 바뀌면 달러, 전 세계 금리, 성장주 주가가 함께 움직여요.
+  한국 금리 결정:
+    term: 금통위
+    why: 한국 기준금리는 대출금리, 원화 가치, 은행·건설·성장주에 영향을 줘요.
+  미국 지표:
+    term: CPI
+    why: 물가·고용·성장 숫자가 예상과 다르면 금리 전망이 바뀌어 시장이 크게 움직여요.
+
+events:
+  # 미국 FOMC (federalreserve.gov, 2027년은 직전 회의에서 최종 확정)
+  - {date: 2026-12-09, type: 미국 금리 결정, title: "FOMC 금리 결정 (경제전망 발표)", source: 미국 연준, url: "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"}
+  - {date: 2027-01-27, type: 미국 금리 결정, title: "FOMC 금리 결정", source: 미국 연준, url: "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"}
+  - {date: 2027-03-17, type: 미국 금리 결정, title: "FOMC 금리 결정 (경제전망 발표)", source: 미국 연준, url: "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"}
+  - {date: 2027-04-28, type: 미국 금리 결정, title: "FOMC 금리 결정", source: 미국 연준, url: "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"}
+  - {date: 2027-06-09, type: 미국 금리 결정, title: "FOMC 금리 결정 (경제전망 발표)", source: 미국 연준, url: "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"}
+  - {date: 2027-07-28, type: 미국 금리 결정, title: "FOMC 금리 결정", source: 미국 연준, url: "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"}
+  - {date: 2027-09-15, type: 미국 금리 결정, title: "FOMC 금리 결정 (경제전망 발표)", source: 미국 연준, url: "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"}
+  - {date: 2027-10-27, type: 미국 금리 결정, title: "FOMC 금리 결정", source: 미국 연준, url: "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"}
+  - {date: 2027-12-08, type: 미국 금리 결정, title: "FOMC 금리 결정 (경제전망 발표)", source: 미국 연준, url: "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"}
+
+  # 한국은행 금융통화위원회 통화정책방향 결정회의
+  - {date: 2026-11-26, type: 한국 금리 결정, title: "금통위 기준금리 결정", source: 한국은행, url: "https://www.bok.or.kr"}
+  - {date: 2027-01-14, type: 한국 금리 결정, title: "금통위 기준금리 결정", source: 한국은행, url: "https://www.bok.or.kr"}
+  - {date: 2027-02-25, type: 한국 금리 결정, title: "금통위 기준금리 결정", source: 한국은행, url: "https://www.bok.or.kr"}
+  - {date: 2027-04-09, type: 한국 금리 결정, title: "금통위 기준금리 결정", source: 한국은행, url: "https://www.bok.or.kr"}
+  - {date: 2027-05-27, type: 한국 금리 결정, title: "금통위 기준금리 결정", source: 한국은행, url: "https://www.bok.or.kr"}
+  - {date: 2027-07-15, type: 한국 금리 결정, title: "금통위 기준금리 결정", source: 한국은행, url: "https://www.bok.or.kr"}
+  - {date: 2027-08-26, type: 한국 금리 결정, title: "금통위 기준금리 결정", source: 한국은행, url: "https://www.bok.or.kr"}
+  - {date: 2027-10-15, type: 한국 금리 결정, title: "금통위 기준금리 결정", source: 한국은행, url: "https://www.bok.or.kr"}
+  - {date: 2027-11-25, type: 한국 금리 결정, title: "금통위 기준금리 결정", source: 한국은행, url: "https://www.bok.or.kr"}
