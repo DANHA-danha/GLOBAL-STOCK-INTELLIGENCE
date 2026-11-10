@@ -1,6 +1,8 @@
 """화면 공통 요소: 지표 카드, 차트, 안내 문구."""
 from __future__ import annotations
 
+import inspect
+
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
@@ -9,6 +11,9 @@ from lib import data
 from lib.glossary import term
 
 ACCENT = "#1d5c73"
+
+# st.metric의 delta_arrow는 최신 Streamlit에만 있어서, 지원할 때만 넘긴다
+_HAS_DELTA_ARROW = "delta_arrow" in inspect.signature(st.metric).parameters
 
 
 def fmt(v: float, unit: str) -> str:
@@ -43,11 +48,22 @@ def metric(key: str, months: int = 1, show_term: bool = True, with_country: bool
         return
     df = data.series(key)
     recent = df[df["date"] >= lt.date - pd.DateOffset(years=1)]["value"].tolist()
+
+    # 변화가 사실상 0이면 화살표 대신 "변동 없음"
+    unchanged = lt.change is not None and abs(lt.change) < 0.005
+    delta = "변동 없음" if unchanged else fmt_change(lt.change, s.get("unit", ""))
+    color = "off" if unchanged else ("inverse" if s.get("up_is_bad") else "normal")
+
+    # 마지막 값이 너무 오래됐으면(발표 중단 등) 날짜를 눈에 띄게 표시
+    age = (pd.Timestamp.today().normalize() - lt.date).days
+    stale = age > 200
+    extra = {"delta_arrow": "off" if unchanged else "auto"} if _HAS_DELTA_ARROW else {}
     st.metric(
-        label,
+        label + (f" · {lt.date:%Y-%m} 이후 갱신 없음" if stale else ""),
         fmt(lt.value, s.get("unit", "")),
-        delta=fmt_change(lt.change, s.get("unit", "")),
-        delta_color="inverse" if s.get("up_is_bad") else "normal",
+        delta=delta,
+        delta_color=color,
+        **extra,
         help=f"{lt.date:%Y-%m-%d} 기준 · {lt.change_label}",
         chart_data=recent if len(recent) > 2 else None,
         chart_type="line",
@@ -92,7 +108,7 @@ def line_chart(keys: list[str], years: int = 5, title: str | None = None, height
 def no_data_notice() -> None:
     st.info(
         "아직 경제 지표를 받아오지 않았어요. 무료 API 키 두 개를 받아 `.env`에 넣고 "
-        "`python scripts/collect.py`를 한 번 실행하면 채워져요. 자세한 방법은 README의 '데이터 받기'에 있어요.",
+        "`python3 scripts/collect.py`를 한 번 실행하면 채워져요. 자세한 방법은 README의 '데이터 받기'에 있어요.",
         icon=":material/database:",
     )
 
@@ -136,4 +152,3 @@ def event_row(e: pd.Series, types: dict, compact: bool = False) -> None:
                     st.caption(" · ".join(links))
                 if isinstance(e.get("term"), str) and e["term"]:
                     term(e["term"], f"{e['term']}란?")
-
