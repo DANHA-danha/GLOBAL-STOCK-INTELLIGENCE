@@ -1,0 +1,25 @@
+{
+  "collected_at": "2026-11-10 13:06",
+  "ok": [],
+  "failed": [],
+  "skipped": [
+    "kr_base_rate (ECOS 키 없음)",
+    "kr_cpi_yoy (ECOS 키 없음)",
+    "kr_usdkrw (ECOS 키 없음)",
+    "kr_bond3y (ECOS 키 없음)",
+    "us_fed_upper (FRED 키 없음)",
+    "us_cpi_yoy (FRED 키 없음)",
+    "us_unrate (FRED 키 없음)",
+    "us_gdp (FRED 키 없음)",
+    "us_10y (FRED 키 없음)",
+    "us_2y (FRED 키 없음)",
+    "us_dollar (FRED 키 없음)",
+    "eu_ecb_rate (FRED 키 없음)",
+    "eu_hicp_yoy (FRED 키 없음)",
+    "eu_usd (FRED 키 없음)",
+    "jp_usdjpy (FRED 키 없음)",
+    "jp_10y (FRED 키 없음)",
+    "cn_usdcny (FRED 키 없음)",
+    "cn_cpi_yoy (FRED 키 없음)"
+  ]
+}
