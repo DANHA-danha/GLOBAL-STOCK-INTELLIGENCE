@@ -1,0 +1,16 @@
+{
+  "corp_name": "에스케이하이닉스(주)",
+  "corp_name_eng": "SK hynix Inc.",
+  "stock_code": "000660",
+  "ceo_nm": "곽노정",
+  "est_dt": "19491015",
+  "induty_code": "2612",
+  "hm_url": "www.skhynix.com",
+  "adres": "경기도 이천시  부발읍 경충대로 2091",
+  "acc_mt": "12",
+  "shares": {
+    "year": 2025,
+    "common": 728002365.0,
+    "preferred": null
+  }
+}

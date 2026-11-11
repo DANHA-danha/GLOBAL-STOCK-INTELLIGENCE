@@ -1,0 +1,16 @@
+{
+  "corp_name": "두산에너빌리티(주)",
+  "corp_name_eng": "DOOSAN ENERBILITY CO., LTD.",
+  "stock_code": "034020",
+  "ceo_nm": "박지원, 정연인, 박상현",
+  "est_dt": "19620920",
+  "induty_code": "29119",
+  "hm_url": "https://www.doosanenerbility.com/kr",
+  "adres": "경상남도 창원시 성산구  두산볼보로 22 두산중공업 주식회사",
+  "acc_mt": "12",
+  "shares": {
+    "year": 2025,
+    "common": 640561146.0,
+    "preferred": null
+  }
+}

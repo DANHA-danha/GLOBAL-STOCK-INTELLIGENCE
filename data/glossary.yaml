@@ -409,3 +409,27 @@
   formula: \text{CAGR} = \left(\frac{\text{최종 금액}}{\text{처음 금액}}\right)^{1/\text{년수}} - 1
   example: 1,000만 원이 3년 뒤 1,331만 원 → CAGR 10%
   related: [MDD]
+
+- term: 영업이익률
+  en: Operating Margin
+  category: 기업 분석
+  short: 매출 중 본업 이익으로 남는 비율이에요.
+  formula: \text{영업이익률} = \frac{\text{영업이익}}{\text{매출}} \times 100
+  example: 매출 100억 원, 영업이익 15억 원 → 영업이익률 15%
+  caution: 업종마다 보통 수준이 달라요. 유통은 몇 %, 소프트웨어는 20~30%대도 흔해요.
+  related: [영업이익, ROE]
+
+- term: 수정주가
+  en: Adjusted Price
+  category: 투자·수급
+  short: 배당, 액면분할, 증자 효과를 반영해 과거 주가를 지금과 비교할 수 있게 고친 가격이에요.
+  detail: 실제 거래된 가격(종가)과 다르지만, "그때 사서 배당까지 다시 투자했다면" 얼마가 됐는지 계산할 때 써요.
+  related: [배당, 액면분할]
+
+- term: 적립식 투자
+  en: Dollar-Cost Averaging
+  category: 투자·수급
+  short: 매달 같은 금액을 꾸준히 사는 방법이에요.
+  detail: 주가가 낮을 땐 많이, 높을 땐 적게 사게 돼서 평균 매수 가격이 고르게 맞춰져요. 언제 살지 고민하는 부담이 줄어요.
+  caution: 계속 떨어지는 종목은 적립식으로 사도 손실이 나요. 무엇을 사는지가 먼저예요.
+  related: [CAGR, MDD]

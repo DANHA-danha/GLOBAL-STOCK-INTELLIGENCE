@@ -1,0 +1,16 @@
+{
+  "corp_name": "현대자동차(주)",
+  "corp_name_eng": "HYUNDAI MOTOR CO",
+  "stock_code": "005380",
+  "ceo_nm": "정의선, 무뇨스 바르셀로 호세 안토니오, 최영일(각자 대표이사)",
+  "est_dt": "19671229",
+  "induty_code": "30121",
+  "hm_url": "www.hyundai.com",
+  "adres": "서울특별시 서초구  헌릉로 12",
+  "acc_mt": "12",
+  "shares": {
+    "year": 2025,
+    "common": 204757766.0,
+    "preferred": 60632342.0
+  }
+}

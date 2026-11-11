@@ -8,7 +8,7 @@ import plotly.graph_objects as go
 import streamlit as st
 
 from lib import data
-from lib.glossary import term
+from lib.glossary import ask, term
 
 ACCENT = "#1d5c73"
 
@@ -70,7 +70,7 @@ def metric(key: str, months: int = 1, show_term: bool = True, with_country: bool
         border=True,
     )
     if show_term and s.get("term"):
-        term(s["term"], f"{s['term']}란?")
+        term(s["term"], ask(s["term"]))
 
 
 def line_chart(keys: list[str], years: int = 5, title: str | None = None, height: int = 320) -> None:
@@ -151,4 +151,4 @@ def event_row(e: pd.Series, types: dict, compact: bool = False) -> None:
                 if links:
                     st.caption(" · ".join(links))
                 if isinstance(e.get("term"), str) and e["term"]:
-                    term(e["term"], f"{e['term']}란?")
+                    term(e["term"], ask(e["term"]))

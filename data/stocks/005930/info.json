@@ -1,0 +1,16 @@
+{
+  "corp_name": "삼성전자(주)",
+  "corp_name_eng": "SAMSUNG ELECTRONICS CO,.LTD",
+  "stock_code": "005930",
+  "ceo_nm": "전영현, 노태문",
+  "est_dt": "19690113",
+  "induty_code": "264",
+  "hm_url": "www.samsung.com/sec",
+  "adres": "경기도 수원시 영통구  삼성로 129 (매탄동)",
+  "acc_mt": "12",
+  "shares": {
+    "year": 2025,
+    "common": 5919637922.0,
+    "preferred": 815974664.0
+  }
+}

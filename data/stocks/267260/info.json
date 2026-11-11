@@ -1,0 +1,16 @@
+{
+  "corp_name": "에이치디현대일렉트릭(주)",
+  "corp_name_eng": "HD HYUNDAI ELECTRIC CO.,LTD",
+  "stock_code": "267260",
+  "ceo_nm": "김영기",
+  "est_dt": "20170403",
+  "induty_code": "281",
+  "hm_url": "www.hd-hyundaielectric.com",
+  "adres": "경기도 성남시 분당구 분당수서로 477 HD현대 글로벌 R&D센터",
+  "acc_mt": "12",
+  "shares": {
+    "year": 2025,
+    "common": 36047135.0,
+    "preferred": null
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "corp_name": "네이버(주)",
+  "corp_name_eng": "NAVER Corporation",
+  "stock_code": "035420",
+  "ceo_nm": "최수연",
+  "est_dt": "19990602",
+  "induty_code": "63120",
+  "hm_url": "www.navercorp.com",
+  "adres": "경기도 성남시 분당구 정자일로 95 1784",
+  "acc_mt": "12",
+  "shares": {
+    "year": 2025,
+    "common": 156852638.0
+  }
+}

@@ -1,0 +1,29 @@
+# 기업 페이지와 모의투자에서 고를 수 있는 종목 목록
+# - 한국 종목: code(6자리 종목코드) + market(KOSPI/KOSDAQ). 재무제표는 Open DART에서 받아요.
+# - 미국 종목: code(티커) + market: US. 지금은 주가만 받고, 재무제표는 다음 단계에서 추가해요.
+# - industry: 화면에 보여줄 산업 이름
+# 이 목록은 기능을 보여주기 위한 예시예요. 상승 가능성을 검증한 추천 목록이 아니에요.
+# 종목을 추가하려면 같은 형식으로 한 줄 넣고 python3 scripts/collect_stocks.py 를 다시 실행해요.
+
+stocks:
+  - {code: "005930", name: 삼성전자, market: KOSPI, industry: 반도체}
+  - {code: "000660", name: SK하이닉스, market: KOSPI, industry: 반도체}
+  - {code: "373220", name: LG에너지솔루션, market: KOSPI, industry: 2차전지}
+  - {code: "207940", name: 삼성바이오로직스, market: KOSPI, industry: 바이오}
+  - {code: "005380", name: 현대차, market: KOSPI, industry: 자동차}
+  - {code: "012450", name: 한화에어로스페이스, market: KOSPI, industry: 방산}
+  - {code: "267260", name: HD현대일렉트릭, market: KOSPI, industry: 전력기기}
+  - {code: "034020", name: 두산에너빌리티, market: KOSPI, industry: 에너지·원전}
+  - {code: "105560", name: KB금융, market: KOSPI, industry: 금융}
+  - {code: "035420", name: NAVER, market: KOSPI, industry: 인터넷}
+  - {code: NVDA, name: 엔비디아, market: US, industry: 반도체}
+  - {code: AAPL, name: 애플, market: US, industry: IT기기}
+  - {code: MSFT, name: 마이크로소프트, market: US, industry: 소프트웨어}
+  - {code: TSLA, name: 테슬라, market: US, industry: 전기차}
+
+# 비교 기준 지수
+benchmarks:
+  - {code: "^KS11", name: 코스피}
+  - {code: "^KQ11", name: 코스닥}
+  - {code: "^GSPC", name: S&P 500}
+  - {code: "^IXIC", name: 나스닥}

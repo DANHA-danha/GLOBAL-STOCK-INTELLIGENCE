@@ -1,0 +1,16 @@
+{
+  "corp_name": "삼성바이오로직스(주)",
+  "corp_name_eng": "SAMSUNG BIOLOGICS CO.,LTD.",
+  "stock_code": "207940",
+  "ceo_nm": "임존종보 (Rim John Chongbo)",
+  "est_dt": "20110422",
+  "induty_code": "211",
+  "hm_url": "www.samsungbiologics.com",
+  "adres": "인천광역시 연수구 송도바이오대로 300",
+  "acc_mt": "12",
+  "shares": {
+    "year": 2025,
+    "common": 46290951.0,
+    "preferred": null
+  }
+}

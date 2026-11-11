@@ -40,6 +40,16 @@ def card(t: dict, show_related: bool = True) -> None:
         st.caption("같이 보면 좋은 용어: " + ", ".join(t["related"]))
 
 
+def ask(name: str) -> str:
+    """'PER이란?', 'ROE란?'처럼 받침에 맞춰 질문 문구를 만들어요."""
+    c = name.strip()[-1]
+    if "가" <= c <= "힣":
+        has = (ord(c) - 0xAC00) % 28 != 0
+    else:
+        has = c.upper() in "LMNR013678"  # 엘·엠·엔·알, 영·일·삼·육·칠·팔
+    return f"{name}{'이란' if has else '란'}?"
+
+
 def term(name: str, label: str | None = None) -> None:
     """버튼처럼 생긴 용어. 누르면 그 자리에서 뜻이 펼쳐져요."""
     t = get(name)

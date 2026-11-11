@@ -1,0 +1,16 @@
+{
+  "corp_name": "(주)KB금융지주",
+  "corp_name_eng": "KB Financial Group Inc.",
+  "stock_code": "105560",
+  "ceo_nm": "양종희",
+  "est_dt": "20080929",
+  "induty_code": "64992",
+  "hm_url": "www.kbfg.com",
+  "adres": "서울특별시 영등포구 국제금융로8길 26 (여의도동, 국민은행 여의도본점)",
+  "acc_mt": "12",
+  "shares": {
+    "year": 2025,
+    "common": 381462103.0,
+    "preferred": null
+  }
+}

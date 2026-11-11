@@ -1,0 +1,16 @@
+{
+  "corp_name": "(주)엘지에너지솔루션",
+  "corp_name_eng": "LG ENERGY SOLUTION, LTD.",
+  "stock_code": "373220",
+  "ceo_nm": "김동명",
+  "est_dt": "20201201",
+  "induty_code": "28202",
+  "hm_url": "www.lgensol.com",
+  "adres": "서울특별시 영등포구 여의대로 108, 타워 1",
+  "acc_mt": "12",
+  "shares": {
+    "year": 2025,
+    "common": 234000000.0,
+    "preferred": null
+  }
+}

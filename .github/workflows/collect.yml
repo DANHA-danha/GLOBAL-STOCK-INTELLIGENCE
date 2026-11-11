@@ -1,5 +1,5 @@
-# 매일 아침 지표를 받아 data/ 를 갱신하고 커밋해요.
-# 저장소 Settings > Secrets and variables > Actions 에 ECOS_API_KEY, FRED_API_KEY 를 넣어야 돌아가요.
+# 매일 아침 경제 지표와 종목 데이터를 받아 data/ 를 갱신하고 커밋해요.
+# 저장소 Settings > Secrets and variables > Actions 에 ECOS_API_KEY, FRED_API_KEY, DART_API_KEY 를 넣어야 돌아가요.
 name: collect
 
 on:
@@ -19,14 +19,20 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
-      - run: python scripts/collect.py
+      - name: 경제 지표
+        run: python scripts/collect.py
         env:
           ECOS_API_KEY: ${{ secrets.ECOS_API_KEY }}
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+      - name: 종목 데이터
+        run: python scripts/collect_stocks.py
+        continue-on-error: true   # 종목 수집이 실패해도 경제 지표는 저장해요
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
       - name: commit data
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
           git add data
-          git diff --cached --quiet || git commit -m "data: $(date -u +%F) 지표 갱신"
+          git diff --cached --quiet || git commit -m "data: $(date -u +%F) 갱신"
           git push

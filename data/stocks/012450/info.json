@@ -1,0 +1,15 @@
+{
+  "corp_name": "한화에어로스페이스(주)",
+  "corp_name_eng": "HANWHA AEROSPACE CO., LTD.",
+  "stock_code": "012450",
+  "ceo_nm": "김동관, 이부환",
+  "est_dt": "19770801",
+  "induty_code": "31321",
+  "hm_url": "www.hanwhaaerospace.com",
+  "adres": "경상남도 창원시 성산구  창원대로 1204",
+  "acc_mt": "12",
+  "shares": {
+    "year": 2025,
+    "common": 51563401.0
+  }
+}
