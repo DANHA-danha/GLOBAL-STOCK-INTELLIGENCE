@@ -1,5 +1,6 @@
-# 매일 아침 경제 지표와 종목 데이터를 받아 data/ 를 갱신하고 커밋해요.
-# 저장소 Settings > Secrets and variables > Actions 에 ECOS_API_KEY, FRED_API_KEY, DART_API_KEY 를 넣어야 돌아가요.
+# 매일 아침 경제 지표와 주가를 받아 data/ 를 갱신하고 커밋해요.
+# 재무제표(DART)는 해외 서버에서 접속이 막혀서, 내 컴퓨터에서 가끔 직접 받아요:
+#   python3 scripts/collect_stocks.py   (사업보고서가 나오는 4월쯤 한 번)
 name: collect
 
 on:
@@ -24,11 +25,9 @@ jobs:
         env:
           ECOS_API_KEY: ${{ secrets.ECOS_API_KEY }}
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
-      - name: 종목 데이터
+      - name: 주가
         run: python scripts/collect_stocks.py
-        continue-on-error: true   # 종목 수집이 실패해도 경제 지표는 저장해요
-        env:
-          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        continue-on-error: true   # 주가 수집이 실패해도 경제 지표는 저장해요
       - name: commit data
         run: |
           git config user.name "github-actions"
