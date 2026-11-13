@@ -169,6 +169,18 @@ countries:
         term: CPI
         up_is_bad: false
 
+  - code: CM
+    name: 원자재
+    note: 국제유가는 물가와 금리 전망, 정유·항공·화학 업종에 바로 영향을 줘요.
+    series:
+      - key: cm_wti
+        label: 국제유가(WTI)
+        source: fred
+        id: DCOILWTICO
+        unit: 달러
+        term: CPI
+        up_is_bad: true
+
 # 한국은행 "100대 통계지표"에서 최신값만 가져와 표로 보여줘요(코드 없이 이름으로 찾아요)
 ecos_key_stats:
   - 경제성장률

@@ -108,7 +108,7 @@ else:
     fig.update_layout(height=360, margin=dict(l=8, r=8, t=10, b=8), hovermode="x unified",
                       legend=dict(orientation="h", y=-0.15), plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)")
     fig.update_yaxes(gridcolor="rgba(128,128,128,0.2)")
-    st.plotly_chart(fig, width="stretch", config={"displayModeBar": False})
+    ui.chart(fig)
     term("MDD", "최대 낙폭(MDD)이란?")
 
     ar = stocks.annual_returns(code)
@@ -117,12 +117,15 @@ else:
         bar = go.Figure(go.Bar(
             x=[f"{y}{'*' if p else ''}" for y, p in zip(ar["year"], ar["partial"])], y=ar["return"],
             marker_color=["#2d7a4b" if r >= 0 else "#b5452c" for r in ar["return"]],
-            text=[f"{r:+.0f}%" for r in ar["return"]], textposition="outside",
+            text=[f"{r:+.0f}%" for r in ar["return"]], textposition="outside", cliponaxis=False,
         ))
-        bar.update_layout(height=280, margin=dict(l=8, r=8, t=10, b=8), plot_bgcolor="rgba(0,0,0,0)",
+        lo, hi = min(0, ar["return"].min()), max(0, ar["return"].max())
+        pad = (hi - lo) * 0.15 or 5
+        bar.update_yaxes(range=[lo - pad, hi + pad])
+        bar.update_layout(height=300, margin=dict(l=8, r=8, t=24, b=8), plot_bgcolor="rgba(0,0,0,0)",
                           paper_bgcolor="rgba(0,0,0,0)", yaxis=dict(ticksuffix="%", gridcolor="rgba(128,128,128,0.2)"),
                           xaxis=dict(type="category"))
-        st.plotly_chart(bar, width="stretch", config={"displayModeBar": False})
+        ui.chart(bar)
         st.caption("* 올해는 1월 1일부터 지금까지예요.")
 
 # ---------- 재무 ----------
@@ -142,7 +145,7 @@ if fin is not None and not fin.empty:
                     plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)")
     g.update_yaxes(gridcolor="rgba(128,128,128,0.2)", tickformat=",")
     g.update_xaxes(type="category")
-    st.plotly_chart(g, width="stretch", config={"displayModeBar": False})
+    ui.chart(g)
 
     t = pd.DataFrame({
         "연도": f["year"].astype(str),
@@ -153,7 +156,7 @@ if fin is not None and not fin.empty:
         "ROE(%)": (fin["net_income"] / fin["equity"] * 100).round(1),
         "부채비율(%)": (fin["liabilities"] / fin["equity"] * 100).round(1),
     })
-    st.dataframe(t, hide_index=True, width="stretch",
+    ui.table(t, hide_index=True,
                  column_config={k: st.column_config.NumberColumn(format="localized") for k in ["매출(억)", "영업이익(억)", "당기순이익(억)"]})
     tc = st.columns(4)
     for col, name in zip(tc, ["영업이익", "당기순이익", "ROE", "부채비율"]):

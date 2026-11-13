@@ -113,7 +113,7 @@ fig.add_trace(go.Scatter(x=inv["date"], y=inv["invested"] / (1 if results[0][1] 
 fig.update_layout(height=380, margin=dict(l=8, r=8, t=10, b=8), hovermode="x unified", legend=dict(orientation="h", y=-0.15),
                   plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)")
 fig.update_yaxes(title="만원" if not results[0][1] else "달러", gridcolor="rgba(128,128,128,0.2)", tickformat=",")
-st.plotly_chart(fig, width="stretch", config={"displayModeBar": False})
+ui.chart(fig)
 
 notes = ["최대 낙폭은 기간 중 주가가 고점에서 가장 많이 떨어진 비율이에요. 그 기간을 버텨야 위 결과를 얻을 수 있었다는 뜻이에요."]
 if monthly:

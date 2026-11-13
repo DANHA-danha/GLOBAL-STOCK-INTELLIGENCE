@@ -8,6 +8,8 @@ pages = [
     st.Page("views/economy.py", title="경제 상황판", icon=":material/public:"),
     st.Page("views/company.py", title="기업 페이지", icon=":material/apartment:"),
     st.Page("views/simulator.py", title="모의투자", icon=":material/savings:"),
+    st.Page("views/events.py", title="금리 결정 전후", icon=":material/timeline:"),
+    st.Page("views/industry.py", title="산업 지도", icon=":material/hub:"),
     st.Page("views/calendar.py", title="일정 캘린더", icon=":material/calendar_month:"),
     st.Page("views/tutor.py", title="용어 튜터", icon=":material/school:"),
 ]

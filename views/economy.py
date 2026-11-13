@@ -58,9 +58,9 @@ for tab, c in zip(tabs, cfg["countries"]):
             ks = data.key_stats()
             if ks is not None and not ks.empty:
                 st.markdown("**한국은행 주요 통계 (최신값)**")
-                st.dataframe(
+                ui.table(
                     ks.rename(columns={"group": "분류", "name": "지표", "value": "값", "unit": "단위", "period": "기준"}),
-                    hide_index=True, width="stretch",
+                    hide_index=True,
                 )
         if c["code"] == "CN":
             st.caption("중국 제조업 PMI는 무료 API가 없어 다음 단계에서 추가할 예정이에요.")

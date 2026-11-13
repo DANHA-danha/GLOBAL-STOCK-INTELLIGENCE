@@ -14,6 +14,21 @@ ACCENT = "#1d5c73"
 
 # st.metric의 delta_arrow는 최신 Streamlit에만 있어서, 지원할 때만 넘긴다
 _HAS_DELTA_ARROW = "delta_arrow" in inspect.signature(st.metric).parameters
+# 차트·표의 가로 꽉 채우기 옵션도 버전마다 이름이 달라요 (width="stretch" ↔ use_container_width=True)
+_CHART_WIDTH = "width" in inspect.signature(st.plotly_chart).parameters
+_TABLE_WIDTH = "width" in inspect.signature(st.dataframe).parameters
+
+
+def chart(fig) -> None:
+    """plotly 차트를 가로로 꽉 채워 보여줘요. Streamlit 버전에 맞춰 옵션을 골라요."""
+    opts = {"width": "stretch"} if _CHART_WIDTH else {"use_container_width": True}
+    st.plotly_chart(fig, config={"displayModeBar": False}, **opts)
+
+
+def table(df, **kwargs) -> None:
+    """표를 가로로 꽉 채워 보여줘요."""
+    opts = {"width": "stretch"} if _TABLE_WIDTH else {"use_container_width": True}
+    st.dataframe(df, **kwargs, **opts)
 
 
 def fmt(v: float, unit: str) -> str:
@@ -102,7 +117,7 @@ def line_chart(keys: list[str], years: int = 5, title: str | None = None, height
     )
     fig.update_yaxes(gridcolor="rgba(128,128,128,0.2)", zeroline=False)
     fig.update_xaxes(showgrid=False)
-    st.plotly_chart(fig, width="stretch", config={"displayModeBar": False})
+    chart(fig)
 
 
 def no_data_notice() -> None:
