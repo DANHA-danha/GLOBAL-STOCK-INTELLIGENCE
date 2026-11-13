@@ -1,3 +1,5 @@
+from html import escape
+
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
@@ -57,7 +59,7 @@ st.markdown(f"**{len(sel)}번의 금리 {direction}** "
             f"({sel['announced'].min():%Y-%m} ~ {sel['announced'].max():%Y-%m}) 전후 평균이에요. 반응 전날 주가를 100으로 맞췄어요.")
 
 # ---------- 평균 경로 차트 ----------
-palette = [ui.ACCENT, "#c2603c", "#6b7f2a", "#7a5aa6"]
+palette = ui.PALETTE
 fig = go.Figure()
 results = {}
 for i, code in enumerate(picks):
@@ -73,15 +75,32 @@ for i, code in enumerate(picks):
     fig.add_trace(go.Scatter(x=avg.index, y=avg.values, name=names[code], mode="lines",
                              line=dict(color=palette[i % 4], width=2.6),
                              hovertemplate="%{x}일<br>%{y:.1f}<extra>" + names[code] + "</extra>"))
-fig.add_vline(x=0, line_dash="dot", line_color="#999")
-fig.add_hline(y=100, line_color="rgba(128,128,128,0.4)")
-fig.add_annotation(x=0, y=1, yref="paper", text="반응한 날", showarrow=False, xanchor="left", yanchor="top",
-                   font=dict(color="#888"))
+fig.add_vrect(x0=0, x1=after, fillcolor=ui.ACCENT, opacity=0.04, line_width=0)
+fig.add_vline(x=0, line_dash="dot", line_color=ui.MUTED)
+fig.add_hline(y=100, line_color=ui.LINE)
+for x, txt, anchor in ((-1, "← 발표 전", "right"), (1, "발표 후 →", "left")):
+    fig.add_annotation(x=x, y=1, yref="paper", text=txt, showarrow=False, xanchor=anchor, yanchor="top",
+                       font=dict(color=ui.MUTED, size=12))
 fig.update_layout(height=420, margin=dict(l=8, r=8, t=10, b=8), hovermode="x unified",
-                  legend=dict(orientation="h", y=-0.18), plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)")
-fig.update_xaxes(title="발표 기준 거래일 (음수 = 발표 전)", zeroline=False)
-fig.update_yaxes(title="반응 전날 = 100", gridcolor="rgba(128,128,128,0.2)")
+                  legend=dict(orientation="h", y=-0.18))
+fig.update_xaxes(title="발표 기준 거래일", zeroline=False)
+fig.update_yaxes(title="반응 전날 = 100")
 ui.chart(fig)
+lead = picks[0]
+paths0, avg0 = results[lead]
+if not avg0.empty:
+    a_ret = events.ret(avg0, -1, after)
+    a20 = [events.ret(paths0[c].dropna(), -1, 20) for c in paths0.columns]
+    a20 = [x for x in a20 if x is not None]
+    if a_ret is not None and a20:
+        k = sum(x > 0 for x in a20)
+        cls = "up" if a_ret >= 0 else "down"
+        ui.reading(
+            f"금리 {direction} 발표 뒤 {after}거래일 동안 {escape(ui.josa(names[lead], '은', '는'))} 평균 <b class=\"{cls}\">{a_ret:+.1f}%</b> 움직였어요. "
+            f"하지만 20거래일 뒤에 올라 있던 경우는 {len(a20)}번 중 <b>{k}번</b>({k / len(a20) * 100:.0f}%)이라, "
+            + ("대체로 같은 방향이었어요." if k / len(a20) >= 0.7 or k / len(a20) <= 0.3 else "매번 같은 방향은 아니었어요. 평균만 보고 판단하면 위험해요.")
+        )
+st.caption("선이 100보다 위면 발표 전날보다 올랐다는 뜻이에요. 오른쪽 옅은 배경이 발표 후 구간이에요.")
 st.toggle(f"{names[picks[0]]}의 사건별 경로도 흐리게 보기", key="ev_each")
 
 # ---------- 요약 표 ----------
@@ -105,7 +124,8 @@ for code in picks:
 tbl = pd.DataFrame(rows)
 fmt = {c: st.column_config.NumberColumn(format="%+.1f%%") for c in tbl.columns if c not in ("종목·지수", "사건 수", "20일 후 오른 비율")}
 fmt["20일 후 오른 비율"] = st.column_config.NumberColumn(format="%.0f%%")
-ui.table(tbl, hide_index=True, column_config=fmt)
+ret_cols = [c for c in tbl.columns if c not in ("종목·지수", "사건 수", "20일 후 오른 비율")]
+ui.table(tbl.style.map(ui.ret_color, subset=ret_cols), hide_index=True, column_config=fmt)
 st.caption("모두 평균 경로 기준 수익률이에요. '20일 후 오른 비율'은 사건별로 20거래일 뒤 주가가 반응 전날보다 높았던 비율이에요.")
 
 # ---------- 사건 목록 ----------

@@ -4,15 +4,17 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from lib import data, stocks, ui
+from lib import data, flow, stocks, ui
 from lib.glossary import ask, term
 
-st.title("모의투자")
-st.caption("실제 돈 없이, 과거 특정 날짜에 샀다면 지금 얼마가 됐을지 계산해요.")
+flow.bar(4)
+st.title("그때 샀다면, 지금 얼마일까")
+st.caption("실제 돈 없이, 과거 특정 날짜에 샀다면 지금 얼마가 됐을지 계산해요. 같은 돈을 시장 전체(지수)에 넣었을 때와 비교해요.")
 
 uni = stocks.universe()["stocks"]
 labels = {s["code"]: f"{s['name']} ({s['code']})" for s in uni}
-default = [st.session_state.get("company_code", uni[0]["code"])]
+fc = flow.get("company") or st.session_state.get("company_code")
+default = [fc if fc in labels else uni[0]["code"]]
 
 with st.container(border=True):
     c1, c2 = st.columns([3, 2])
@@ -91,6 +93,20 @@ for col, (r, usd) in zip(cols, results):
             diff = r.total_return - bres.total_return
             st.caption(f"같은 방식으로 {bname}에 넣었다면 {bres.total_return:+.1f}% → {'초과' if diff >= 0 else '미달'} {diff:+.1f}%p")
 
+lines = []
+for r, usd in results:
+    mult = r.final / r.invested if r.invested else 0
+    cls = "up" if r.profit >= 0 else "down"
+    line = (f"<b>{r.name}</b>: {money(r.invested, usd)}을 넣어 지금 <b class=\"{cls}\">{money(r.final, usd)}</b>이 됐어요"
+            f" (넣은 돈의 <b>{mult:.1f}배</b>).")
+    if bres is not None:
+        diff = r.total_return - bres.total_return
+        line += f" {bname}보다 <b>{abs(diff):.1f}%p</b> {'더 벌었어요' if diff >= 0 else '덜 벌었어요'}."
+    if r.mdd <= -10:
+        line += f" 다만 중간에 고점 대비 <b>{r.mdd:.0f}%</b>까지 떨어진 때를 버텨야 했어요."
+    lines.append(line)
+ui.reading("<br>".join(lines))
+
 tc = st.columns(4)
 for col, t in zip(tc, ["CAGR", "MDD", "적립식 투자", "수정주가"]):
     with col:
@@ -99,21 +115,21 @@ for col, t in zip(tc, ["CAGR", "MDD", "적립식 투자", "수정주가"]):
 # ---------- 차트 ----------
 st.subheader("평가금액 변화")
 fig = go.Figure()
-palette = [ui.ACCENT, "#c2603c", "#6b7f2a"]
+palette = ui.PALETTE
 for i, (r, usd) in enumerate(results):
     fig.add_trace(go.Scatter(x=r.curve["date"], y=r.curve["value"] / (1 if usd else 10_000), name=r.name,
-                             line=dict(color=palette[i % 3], width=2.2)))
+                             line=dict(color=palette[i % 3], width=2.2 if i == 0 else 1.8)))
 if bres is not None:
     busd = results[0][1]
     fig.add_trace(go.Scatter(x=bres.curve["date"], y=bres.curve["value"] / (1 if busd else 10_000), name=bname,
-                             line=dict(color="#888", width=1.6, dash="dot")))
+                             line=dict(color=ui.PALETTE[2], width=1.6, dash="dot")))
 inv = results[0][0].curve
 fig.add_trace(go.Scatter(x=inv["date"], y=inv["invested"] / (1 if results[0][1] else 10_000), name="넣은 돈",
-                         line=dict(color="#bbb", width=1.4, shape="hv")))
-fig.update_layout(height=380, margin=dict(l=8, r=8, t=10, b=8), hovermode="x unified", legend=dict(orientation="h", y=-0.15),
-                  plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)")
-fig.update_yaxes(title="만원" if not results[0][1] else "달러", gridcolor="rgba(128,128,128,0.2)", tickformat=",")
+                         line=dict(color="#aab2bb", width=1.4, shape="hv")))
+fig.update_layout(height=380, margin=dict(l=8, r=8, t=10, b=8), hovermode="x unified", legend=dict(orientation="h", y=-0.15))
+fig.update_yaxes(title="만원" if not results[0][1] else "달러", tickformat=",")
 ui.chart(fig)
+st.caption("회색 계단선이 넣은 돈이에요. 선이 회색선보다 위에 있으면 그 시점에 이익, 아래면 손실이에요.")
 
 notes = ["최대 낙폭은 기간 중 주가가 고점에서 가장 많이 떨어진 비율이에요. 그 기간을 버텨야 위 결과를 얻을 수 있었다는 뜻이에요."]
 if monthly:
@@ -122,4 +138,10 @@ notes.append("세금, 거래 수수료는 빼지 않았어요. 과거 수익률�
 for n in notes:
     st.caption(n)
 st.divider()
+st.markdown("#### 다른 흐름도 따라가 보기")
+c1, c2 = st.columns(2)
+with c1:
+    st.page_link("views/industry.py", label="같은 변화에서 다른 회사 고르기", icon=":material/arrow_back:")
+with c2:
+    st.page_link("views/economy.py", label="처음부터: 다른 경제 변화 보기", icon=":material/restart_alt:")
 ui.disclaimer()

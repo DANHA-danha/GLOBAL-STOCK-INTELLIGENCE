@@ -1,3 +1,5 @@
+from html import escape
+
 import streamlit as st
 
 from lib import data, ui
@@ -15,6 +17,10 @@ picked = st.pills("종류", kinds, selection_mode="multi", default=kinds)
 view = ev[ev["type"].isin(picked or kinds)]
 
 up = view[view["d_day"] >= 0]
+if not up.empty:
+    n = up.iloc[0]
+    ui.reading(f"가장 가까운 일정은 <b>{n['date']:%m/%d}({ui.WEEKDAY[n['date'].weekday()]})</b> "
+               f"{escape(ui.josa(str(n['title']), '이에요', '예요'))} (<b>{ui.d_label(int(n['d_day']))}</b>).", label="다음 일정")
 st.subheader(f"다가오는 일정 {len(up)}개")
 month = None
 for _, e in up.iterrows():

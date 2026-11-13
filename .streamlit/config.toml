@@ -1,5 +1,36 @@
 [theme]
+# 리서치 리포트처럼: 흰 종이, 가는 괘선, 남색 잉크 하나
+base = "light"
 primaryColor = "#1d5c73"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f3f5f7"
+textColor = "#16191f"
+linkColor = "#1d5c73"
+linkUnderline = false
+borderColor = "#e3e6ea"
+dataframeBorderColor = "#e3e6ea"
+dataframeHeaderBackgroundColor = "#f3f5f7"
+showWidgetBorder = true
+
+font = "IBM Plex Sans KR:https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap"
+headingFont = "IBM Plex Sans KR:https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap"
+codeFont = "IBM Plex Mono:https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap"
+baseFontSize = 15
+headingFontSizes = ["2rem", "1.25rem", "1.0625rem", "1rem", "0.9375rem", "0.875rem"]
+headingFontWeights = [600, 600, 600, 500, 500, 500]
+baseRadius = "8px"
+buttonRadius = "8px"
+
+# 알림 상자 색: 채도를 낮춰 화면 안에 가라앉게
+redColor = "#c8402f"
+greenColor = "#2f7d55"
+blueColor = "#3a6383"
+yellowColor = "#9a6b16"
+orangeColor = "#b4632a"
+grayColor = "#6b7480"
+
+# 차트 기본 색: 잉크(주) → 황토 → 슬레이트 → 자두
+chartCategoricalColors = ["#1d5c73", "#b8843b", "#7d8894", "#6f5a80", "#4f8a7a"]
 
 [server]
 headless = true
