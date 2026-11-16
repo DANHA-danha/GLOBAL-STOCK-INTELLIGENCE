@@ -278,6 +278,9 @@ _CSS = """
 
 /* 상단 메뉴: 흰 바탕에 아래 괘선 하나 */
 [data-testid="stHeader"] { background: #ffffff; border-bottom: 1px solid var(--sl-line); }
+/* 메뉴: 흐름(홈~4) 뒤, 더 알아보기 세 개 앞에 가는 구분선 */
+.rc-overflow-item:nth-child(6) { position: relative; }
+.rc-overflow-item:nth-child(6)::before { content: ""; position: absolute; left: -1px; top: 8px; bottom: 8px; width: 1px; background: var(--sl-line); }
 [data-testid="stMainBlockContainer"] { padding-top: 88px; padding-bottom: 64px; max-width: 1360px; }
 
 /* 제목: 굵기 대신 크기로 위계 */
