@@ -223,9 +223,9 @@ if fin is not None and not fin.empty:
 
     t = pd.DataFrame({
         "연도": f["year"].astype(str),
-        "매출(억)": f["revenue"].round(0),
-        "영업이익(억)": f["operating_income"].round(0),
-        "당기순이익(억)": f["net_income"].round(0),
+        "매출(억)": (fin["revenue"] / 1e8).round(0),
+        "영업이익(억)": (fin["operating_income"] / 1e8).round(0),
+        "당기순이익(억)": (fin["net_income"] / 1e8).round(0),
         "영업이익률(%)": (fin["operating_income"] / fin["revenue"] * 100).round(1),
         "ROE(%)": (fin["net_income"] / fin["equity"] * 100).round(1),
         "부채비율(%)": (fin["liabilities"] / fin["equity"] * 100).round(1),
