@@ -22,18 +22,18 @@ streamlit run app.py
 ## 폴더 구조
 
 ```
-app.py                  메뉴(상단 탭)와 페이지 연결
+app.py                  메뉴와 페이지 연결
 views/                  화면 하나당 파일 하나
   home.py  economy.py  calendar.py  tutor.py
 lib/
   data.py               data/ 파일 읽기, 최신값·변화 계산
   insights.py           연결 고리 규칙 (한미 금리차, 장단기 금리차, 달러·원화·엔화, 물가)
-  glossary.py           용어 사전, 어디서든 term("PER")로 물음표 버튼
+  glossary.py           용어 사전
   ui.py                 지표 카드, 차트, 일정 줄, 안내 문구
 config/series.yaml      보여줄 지표 목록과 API 코드
 data/
-  glossary.yaml         용어 55개 (여기에 추가하면 바로 반영)
-  events.yaml           FOMC·금통위 일정 (직접 관리)
+  glossary.yaml         용어사전
+  events.yaml           FOMC·금통위 일정
   series/               collect.py가 만든 지표 CSV
   events_auto.csv       collect.py가 받은 미국 지표 발표일
 scripts/collect.py      ECOS·FRED 수집
